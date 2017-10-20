@@ -1,0 +1,21 @@
+
+
+X = [ones(m,1) X];
+
+
+% foward propagation
+% a1 = X; 
+a2 = sigmoid(Theta1 * X');
+a2 = [ones(m,1) a2'];
+
+h = sigmoid(Theta2 * a2'); % h_theta equals z3
+fprintf("sum of h = %f\n", sum(h(:)));
+
+ymat = zeros(m,num_labels);
+for i=1,m,
+    ymat(i,y(i)) = 1;
+end;
+
+
+J = (1/m) * sum ( sum (  (-ymat) .* log(h)  -  (1-ymat) .* log(1-h) ));
+
